@@ -42,7 +42,7 @@
   mysql_user: user=root password=cisco host=localhost
 
 - name: accept remote connections
-  sudo: yes
+  become: yes
   lineinfile: dest=/etc/mysql/mariadb.conf.d/50-server.cnf regexp="^bind-address" line="bind-address = {{ SQL_Server }}"
   notify:
    - restart mysql

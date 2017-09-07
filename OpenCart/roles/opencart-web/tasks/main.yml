@@ -44,7 +44,7 @@
        - reload httpd
 
     - name: Deploy /admin/config.php from adminconfig.php.j2 Template
-      sudo: yes
+      become: yes
       template: src=adminconfig.php.j2 dest=/var/www/html/admin/config.php mode=0777
       notify:
        - reload httpd
