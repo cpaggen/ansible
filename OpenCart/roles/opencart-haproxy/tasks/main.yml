@@ -7,11 +7,10 @@
        update_cache=yes
       with_items:
            - haproxy
-    - systemd: state=started name=haproxy enabled=yes
 
     - name: create front-end config
-      sudo: yes
+      become: yes
       template: src=front-end.j2 dest=/etc/haproxy/haproxy.cfg mode=0777
       notify:
-      - restart haproxy
+      - reload haproxy
 

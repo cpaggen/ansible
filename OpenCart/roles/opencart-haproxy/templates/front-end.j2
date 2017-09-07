@@ -22,10 +22,8 @@ frontend opencart
     stats uri /haproxy?stats
     stats realm Strictly\ Private
     stats auth cisco:cisco
-    cookie haproxy-ta-lab insert
-    balance roundrobin
 
 backend servers
-    server web1 {{ Web_Server1 }}:80 cookie one check
-    server web2 {{ Web_Server2 }}:80 cookie two check
+    server web1 {{ Web_Server1 }}:80 
+    server web2 {{ Web_Server2 }}:80
 
