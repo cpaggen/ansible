@@ -6,3 +6,4 @@
 
 [web]
 10.48.58.27 ansible_user=cisco
+10.48.58.28 ansible_user=cisco
