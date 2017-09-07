@@ -2,16 +2,15 @@
 dependencies: []
 
 galaxy_info:
-  author: dstoeckm
-  description: CentOS RHEL Common
+  author: cpaggen
+  description: SQL DB
   company: "Cisco"
   license: "license (MIT)"
   min_ansible_version: 1.6
   platforms:
-  - name: EL
+  - name: Ubuntu
     versions:
-      - 5
-      - 6
+      - 16.04
   categories:
     -
     -

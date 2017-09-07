@@ -1,9 +1,9 @@
 <?php
 // HTTP
-define('HTTP_SERVER', 'http://{{ Web_Server }}/');
+define('HTTP_SERVER', 'http://{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}/');
 
 // HTTPS
-define('HTTPS_SERVER', 'http://{{ Web_Server }}/');
+define('HTTPS_SERVER', 'http://{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}/');
 
 // DIR
 define('DIR_APPLICATION', '/var/www/html/catalog/');

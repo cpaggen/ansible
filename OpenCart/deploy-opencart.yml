@@ -6,3 +6,7 @@
 - hosts: sql
   roles:
   - opencart-sql
+
+- hosts: ha-proxy
+  roles:
+  - opencart-haproxy
