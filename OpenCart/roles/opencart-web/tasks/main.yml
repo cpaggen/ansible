@@ -1,0 +1,66 @@
+---
+    - name: install OpenCart requirement Packages
+      sudo: yes
+      apt: 
+       name={{ item }} 
+       state=present 
+       update_cache=yes
+      with_items:
+           - apache2
+           - php7.0-mysql 
+           - php7.0-curl 
+           - php7.0-json 
+           - php7.0-cgi 
+           - php7.0 
+           - libapache2-mod-php7.0 
+           - php7.0-mcrypt
+    - systemd: state=started name=apache2 enabled=yes
+
+
+  #  - name: Download OpenCart binaries
+  #    get_url: url=http://fatboy-dus.cisco.com/opencart.zip  dest=/tmp mode=0777
+
+    - name:
+      file:
+       path: /tmp/opencart
+       state: directory
+       mode: 0777
+
+    - name: Download OpenCart zip file
+      unarchive:
+        src: templates/opencart-html.zip
+        dest: /tmp/opencart
+        remote_src: no
+        mode: 0777
+
+    - name: rsync files
+      sudo: yes
+      command: rsync -Wag /tmp/opencart/upload/ /var/www/html/
+      #synchronize: set_remote_user=no mode=pull src=/tmp/opencart/ dest=/var/www/html/
+
+#    - name: Sync download to /var/www/html
+#      synchronize:
+#        src: /tmp/opencart/upload/
+#        dest: /var/www/html/
+#        checksum: yes
+#        times: no
+#        set_remote_user: no
+
+    - name: Deploy config.php from config.php.j2 Template
+      sudo: yes
+      template: src=config.php.j2 dest=/var/www/html/config.php mode=0777
+
+    - name: Deploy /admin/config.php from adminconfig.php.j2 Template
+      sudo: yes
+      template: src=adminconfig.php.j2 dest=/var/www/html/admin/config.php mode=0777
+#    - copy:
+#       src: /var/www/html/config-dist.php
+#       dest: /var/www/html/config.php
+#       mode:  0777
+#       remote_src: true
+
+#    - copy:
+#       src: /var/www/html/admin/config-dist.php
+#       dest: /var/www/html/admin/config.php
+#       mode: 0777
+#       remote_src: true

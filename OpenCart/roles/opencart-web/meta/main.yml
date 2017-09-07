@@ -1,0 +1,17 @@
+---
+dependencies: []
+
+galaxy_info:
+  author: cpaggen
+  description: Ubuntu 16.04
+  company: "Cisco"
+  license: "license (MIT)"
+  min_ansible_version: 1.6
+  platforms:
+  - name: Ubuntu
+    versions:
+      - 16.04
+  categories:
+    -
+    -
+    - 

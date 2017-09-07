@@ -1,0 +1,8 @@
+
+---
+
+  - name: restart mysql
+    service: name=mysql state=restarted
+#
+#  - name: Reload httpd
+#    service: name=httpd state=restarted

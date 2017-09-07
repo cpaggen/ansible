@@ -1,0 +1,49 @@
+---
+- name: install OpenCart SQL DB
+  sudo: yes
+  apt: 
+   name={{ item }} 
+   state=present 
+   update_cache=yes
+  with_items:
+       - mariadb-server
+       - python-mysqldb
+
+- systemd: state=started name=mysql enabled=yes
+
+### Create OpenCartDB in MariaDB
+- name: Create a new database with name 'opencart'
+  sudo: yes
+  mysql_db:
+    name: opencartdb
+    state: present
+### Create OpenCart-User
+- name: Create user For opencartdb
+  sudo: yes
+  mysql_user:
+    name: opencartuser
+    password: cisco
+    priv: 'opencartdb.*:ALL,GRANT'
+    host: '10.48.58.%'
+    state: present
+
+- name: push SQL dumpfile
+  sudo: yes
+  copy: src=opencartdb.sql dest=/tmp
+
+- name: import SQL dumpfile
+  sudo: yes
+  mysql_db: state=import name=opencartdb target=/tmp/opencartdb.sql
+
+### Setting the root password
+
+- name: Sets the root password
+  sudo: yes
+  mysql_user: user=root password=cisco host=localhost
+
+- name: accept remote connections
+  sudo: yes
+  lineinfile: dest=/etc/mysql/mariadb.conf.d/50-server.cnf regexp="^bind-address" line="bind-address = {{ SQL_Server }}"
+  notify:
+   - restart mysql
+
