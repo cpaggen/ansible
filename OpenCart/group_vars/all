@@ -1,5 +1,5 @@
 ---
-Web_Server1: "10.48.58.27"
-Web_Server2: "10.48.58.28"
-SQL_Server: "10.48.58.26"
+Web_Server1: "10.48.58.37"
+Web_Server2: "10.48.58.38"
+SQL_Server: "10.48.58.36"
 

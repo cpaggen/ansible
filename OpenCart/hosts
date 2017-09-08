@@ -1,9 +1,9 @@
 [ha-proxy]
-10.48.58.25 ansible_user=cisco
+10.48.58.35 ansible_user=cisco 
 
 [sql]
-10.48.58.26 ansible_user=cisco
+10.48.58.36 ansible_user=cisco
 
 [web]
-10.48.58.27 ansible_user=cisco
-10.48.58.28 ansible_user=cisco
+10.48.58.37 ansible_user=cisco 
+10.48.58.38 ansible_user=cisco

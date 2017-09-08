@@ -40,11 +40,14 @@
     - name: Deploy config.php from config.php.j2 Template
       sudo: yes
       template: src=config.php.j2 dest=/var/www/html/config.php mode=0777
-      notify:
-       - reload httpd
 
     - name: Deploy /admin/config.php from adminconfig.php.j2 Template
       become: yes
       template: src=adminconfig.php.j2 dest=/var/www/html/admin/config.php mode=0777
-      notify:
-       - reload httpd
+
+    - name: restart apache
+      become: yes
+      service:
+       name: apache2
+       state: restarted
+       enabled: yes

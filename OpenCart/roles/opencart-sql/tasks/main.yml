@@ -9,7 +9,12 @@
        - mariadb-server
        - python-mysqldb
 
-- systemd: state=started name=mysql enabled=yes
+- name: start mysql
+  service:
+    name: mysql
+    state: started
+    enabled: yes
+  sudo: yes
 
 ### Create OpenCartDB in MariaDB
 - name: Create a new database with name 'opencart'
@@ -44,6 +49,11 @@
 - name: accept remote connections
   become: yes
   lineinfile: dest=/etc/mysql/mariadb.conf.d/50-server.cnf regexp="^bind-address" line="bind-address = {{ SQL_Server }}"
-  notify:
-   - restart mysql
+
+- name: restart mysql
+  service:
+    name: mysql
+    state: restarted
+    enabled: yes
+  sudo: yes
 
