@@ -44,6 +44,11 @@
     - name: Deploy /admin/config.php from adminconfig.php.j2 Template
       become: yes
       template: src=adminconfig.php.j2 dest=/var/www/html/admin/config.php mode=0777
+ 
+    - name: delete index.html so httpd serves index.php instead
+      file:
+       path: /var/www/html/index.html
+       state: absent
 
     - name: restart apache
       become: yes
