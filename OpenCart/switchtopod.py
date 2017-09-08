@@ -31,7 +31,7 @@ hostsFile = '''
 [web]
 %s ansible_user=cisco
 %s ansible_user=cisco
-'''
+''' % tuple(pod_array[pod])
 
 groupVars = '''
 ---
@@ -41,7 +41,7 @@ SQL_Server: "%s"
 ''' % (pod_array[pod][2], pod_array[pod][3], pod_array[pod][1])
 
 with open('hosts', 'w') as hosts:
-    hosts.write(hostsFile % tuple(pod_array[pod]))
+    hosts.write(hostsFile)
 
 with open('group_vars/all', 'w') as groupfile:
     groupfile.write(groupVars)
