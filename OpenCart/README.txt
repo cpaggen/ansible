@@ -15,4 +15,9 @@ both distros.
 Note: this script does not provision VMs. My full setup is a pyvmomi script that first
 creates VM skeletons and populates a new system in Cobbler. Cobbler then uses a specific
 kickstart profile which pulls down common packages, takes care of proxy settings and a few
-other minor things. The pyvmomi script is included here.
+other minor things. The pyvmomi script is included here. Bear in mind this is code I wrote
+in a couple of hours to make my life simpler. This means I didn't refactor the code so 
+it looks more professional for github - it works for me, that's good enough for the time being :)
+
+Use at your own risks, no/little error checks - my Python code is not idempotent, I just rely
+on the backend's error framework to kick me out in case of duplication. I know ...
